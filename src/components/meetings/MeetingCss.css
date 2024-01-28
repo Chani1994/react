@@ -1,0 +1,22 @@
+.container{
+    display:inline-block;
+    background-color: rgb(248, 249, 249);
+    border: 2px solid rgb(34, 34, 155);
+    border-radius: 3%;
+    color:rgb(11, 61, 242);
+    padding: 25px;
+    margin: 5px;
+    
+  }
+  .red{
+  /* border: 2px solid red; */
+  color: red;
+  }
+  .orange{
+    /* border: 2px solid orange; */
+    color: orange;
+  }
+  .green{
+    /* border: 2px solid green; */
+    color: green;
+  }
