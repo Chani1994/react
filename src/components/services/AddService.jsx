@@ -1,48 +1,40 @@
-import { Button, TextField } from '@mui/material';
-
 import { observer } from 'mobx-react';
+import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
-import { addService } from '../../store/server';
-
+import { addServiceToServer } from '../../store/server';
 const AddService = (observer(({handleAdd}) => {
   const [service, setService] = useState({
-  id: '',
+  // id: '',
   name: '',
   description: '',
   price: '',
-  duration: '',
+  duration:'',
 });
 const handleFormSubmit = (e) => {
   e.preventDefault();
-  addService(service).then(() => {
-    // Handle success
+  addServiceToServer(service).then(() => {
     handleAdd() 
   });
   setService({
-    id: '',
     name: '',
     description: '',
     price: '',
-    duration: '',
+    duration:'',
   });
 };
-
   const handleInputChange = (e) => {
     setService({ ...service,[e.target.name]: e.target.value,});
   }
-    return (
-        <>
-
+    return ( <>
+              <h2>Add Service</h2>
             <form onSubmit={handleFormSubmit}>
-            <TextField name="id" type='number' label="serviceId" variant="outlined" value={service.id} onChange={ handleInputChange} margin="dense" />
-            <br/>
-            <TextField name="name" type='text' label="serviceName" variant="outlined" value={service.name} onChange={handleInputChange} margin="dense" />
+            <TextField required name="name" type='text' label="serviceName" variant="outlined" value={service.name} onChange={handleInputChange} margin="dense" />
             <br/>
             <TextField name="description" label="description" variant="outlined" value={service.description} onChange={handleInputChange} margin="dense" />
             <br/>
-            <TextField name="price" label="servicePrice" variant="outlined" value={service.price} onChange={handleInputChange} margin="dense"/>
+            <TextField required name="price" label="servicePrice" variant="outlined" value={service.price} onChange={handleInputChange} margin="dense"/>
             <br/>
-            <TextField name="duration" label="serviceDuration" variant="outlined" value={service.duration} onChange={handleInputChange} margin="dense"/>
+           <TextField name="duration" type='text' label="duration" variant="outlined" value={service.duration} onChange={ handleInputChange} margin="dense" />
             <br/>
             <Button variant="outlined" type="submit">Add</Button>
             </form>

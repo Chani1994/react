@@ -1,76 +1,49 @@
-
-import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
+import React, { useEffect, useState } from 'react';
 import EditBusinessData from './EditBusinessData'
 import store from '../../store/store'
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import { getBusinessData } from '../../store/server';
-
+import '../../css/businessDataCss.css'
 const BusinessData = (observer(() => {
-  // const [business, setBusiness] = useState(
-  //   {
-  //   name: "Coding Academy",
-  //   address: "123 Main Street",
-  //   phone: "555-1234",
-  //   owner: "John Doe",
-  //   logo: "https://example.com/logo.png",
-  //   description: "A coding academy that offers courses on web development."
-  // }
-  //  );
   const business = store.businessData;
   useEffect(() => {
-    
     getBusinessData()
-    // getServices()
-    // getMeetings
   }, [])
-
   const [open, setOpen] = useState(false);
-
-
   const handleOpenModal = () => {
     setOpen(true);
   };
-
   const handleCloseModal = () => {
     setOpen(false);
   };
-
   return (
-    <div>{business ? <>
-      <h2>Business Details</h2>
-      <p>Name: {business.name}</p>
-      <p>Address: {business.address}</p>
-      <p>Phone: {business.phone}</p>
-      <p>Owner: {business.owner}</p>
-      <p>Logo: <img src={business.logo} alt="Logo" /></p>
-      <p>Description: {business.description}</p>
-    </>
-      : null}
-      {/* <Button onClick={handleOpenModal}>עריכת פרטי עסק</Button> */}
-      {store.isLogin && (
-  <>
-      <Fab color="primary" aria-label="edit">
-        <EditIcon onClick={handleOpenModal}/>
-      </Fab>
-
+    <><div className="header-container">
+      <div className="logo-details-container">
+        <div className="logo-container">
+          <img src={business?.logo} alt="logo" className="logo" />
+        </div> <div className="details-container">
+          {business ? (
+            <> <h2>{business.name}</h2>
+              <p>{business.address}</p>
+              <p>{business.phone}</p>
+              <p>{business.email}</p>
+              <p>{business.owner}</p>
+              <p>{business.description}</p>
+            </>) : null}</div>
+      </div>{store.isLogin && (
+        <div className="fab-container">
+          <Fab aria-label="edit"><EditIcon onClick={handleOpenModal} /></Fab></div>)}
       <Dialog open={open} onClose={handleCloseModal}>
         <DialogTitle>Edit Business Details</DialogTitle>
         <DialogContent>
           <EditBusinessData business={business} handleEdit={() => setOpen(false)} />
-        </DialogContent>
-        <DialogActions>
-          <br/>
-          <Button variant="outlined"  onClick={handleCloseModal}>Cancel</Button>
-          {/* <Button onClick={() => handleEdit(business)}>Save</Button> */}
+        </DialogContent><DialogActions>
+          <Button variant="outlined" onClick={handleCloseModal}>Cancel</Button>
         </DialogActions>
       </Dialog>
-      </>
-      )}
-    </div>
-  );
+    </div> </>);
 }));
-
 export default BusinessData

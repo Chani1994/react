@@ -1,25 +1,22 @@
-import { observer } from "mobx-react"
-import { Button, TextField } from '@mui/material';
 import React from 'react';
+import { observer } from "mobx-react"
+import { Button, TextField,Box} from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-import { useState } from 'react'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { useState } from 'react'
 import { CheckLogin } from "../../store/serverLogin.js"
-
-
-
+import logo2 from '../../images/logo2.png'
+import '../../css/adminCss.css'
 const Login = (observer(() =>{
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = React.useState(false);
-
-    
     const handleLogin = () => {
       CheckLogin(name, password);
       setName('');
@@ -31,8 +28,35 @@ const Login = (observer(() =>{
     };
   return (
     <>
-    
-    <TextField margin="normal"  fullWidth noValidate sx={{ mt: 1 }} type='text' value={name} onChange={(e) => setName(e.target.value)}
+ <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '100vh',
+        backgroundColor:'rgb(10, 18, 89)',
+      }}
+    >
+      <Box
+        component="form"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          p: '2rem',
+          boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
+          borderRadius: '8px',
+          maxWidth: '400px',
+          minWidth: '300px',
+          border: '10px solid rgb(152, 128, 9)',
+          backgroundColor:'white',
+
+        }}
+      >
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+
+    <img src={logo2} alt="logo" className="logo-login"/>
+     </Box>
+    <TextField margin="normal"   noValidate sx={{ mt: 1 }} type='text' value={name} onChange={(e) => setName(e.target.value)}
         id="input-with-icon-textfield"
         label="  Name"
         InputProps={{
@@ -45,7 +69,7 @@ const Login = (observer(() =>{
         variant="standard"
       />
       <br/>
-     <FormControl margin="normal" fullWidth noValidate sx={{ mt: 1 }} value={password} onChange={(e) => setPassword(e.target.value)} variant="standard" >
+     <FormControl margin="normal"  noValidate sx={{ mt: 1 }} value={password} onChange={(e) => setPassword(e.target.value)} variant="standard" >
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <Input
             id="standard-adornment-password"
@@ -63,19 +87,13 @@ const Login = (observer(() =>{
             }
           />
         </FormControl>
-    {/* <label>name:
-                <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
-            </label>
-            <br />
-            <label>password:
-                <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-            </label> */}
              <br /> 
+             <div className='sing-in'>
             <Button fullWidth variant="contained"  sx={{ mt: 3, mb: 2 }} onClick={handleLogin}>Sign In</Button>
-
-
-    </>
+            </div>
+            </Box>
+    </Box>   
+     </>
   )
 }))
-
 export default Login

@@ -1,19 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import App from './App.jsx'
-import './index.css'
 import AdminPage from './components/admin/AdminPage.jsx'
 import MeetingList from './components/meetings/MeetingList.jsx'
 import ServicesList from './components/services/ServiceList.jsx'
 import HomePage from './components/HomePage.jsx'
 import UserHome from './components/user/UserHome.jsx'
-import AddMeeting from './components/meetings/AddMeeting.jsx'
+import EditBusinessData from './components/businessData/EditBusinessData.jsx'
+import ErrorPage from './components/error/ErrorPage.jsx'
+import './index.css'
+
 const routesArray = createBrowserRouter([
   {
     path: '/',
     element: <HomePage/>,
-    errorElement: <div>error page</div>
+    errorElement: <ErrorPage/>
   },
   {
     path: '/admin',
@@ -25,9 +26,13 @@ const routesArray = createBrowserRouter([
       },
 
       {
-        path: 'meetings',
+        path: 'appointment',
         element: <MeetingList />
 
+      },
+      {
+        path: 'editBusinessData',
+        element: <EditBusinessData/>
       }
     ]
   },

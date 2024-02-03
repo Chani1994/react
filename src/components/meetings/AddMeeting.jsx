@@ -1,111 +1,65 @@
-import * as React from 'react';
-import { Button, TextField } from '@mui/material';
-// import alert from '../../store/meetingsFunc.js'
-// import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import dayjs from 'dayjs';
-// import meetingStyle from '../../store/meetingStyle.js';
-// import{showAlert} from '../../store/meetingStyle.js'
-import { useState } from 'react';
 import { observer } from 'mobx-react';
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import React, { useState } from 'react';
 import { addMeeting } from '../../store/server.js';
-// import MeetingsAlert from './MeetingsAlert.jsx';
+import store from '../../store/store.js'
+import '../../css/meetingCss.css'
+import {getCurrentDateTime,handleKeyPress} from '../../store/meetingFunc.js'
 const AddMeeting = (observer(({handleAddMeeting}) => { 
+  const [errorDate,setErrorDate]=useState(false);
   const [formDataMeeting, setFormDataMeeting] = useState({
-    // id: '',
-    serviceType: '',                            
-    dateTime: '',
-    Name: '',
-    Phone: '',
-    Email: '',
+    serviceName:'', dateTime: '', NameUser: '', Phone: '', Email: '',
   });
-  const handleForm= (e) => {
+  const handleForm =  (e) => { 
     e.preventDefault();
-    // if (!formDataMeeting.Email.includes('@')) {
-    //     // <MeetingsAlert/>
-    //   // emailvalid= false
-    //     alert("email invalid")
-    // }
-    addMeeting(formDataMeeting).then(() => {
-        // Handle success
-        handleAddMeeting()
-        alert("הפגישה נוספה בהצלחה")
-
-
-    });
-    setFormDataMeeting({
-      // id: '',
-      serviceType: '',
-      dateTime: '',
-      Name: '',
-      Phone: '',
-      Email: '',
-      });
-  };
-  const handleChange = (e) => {
-    
-    setFormDataMeeting({ ...formDataMeeting,[e.target.name]: e.target.value,});
-
-  }
-  // const handleChangeTime = (date) => 
-  // {
-  //   const currentDate = dayjs();
-  //   const selectedDate = dayjs(date);
-
-  //   if (selectedDate.isBefore(currentDate)) {
-  //    showAlert()
-  //     return;
+    addMeeting(formDataMeeting).then(x => {
+      if(store.isMeeting===false)
+      {setErrorDate(true)
+      }
+      else{if(store.isMeeting===true)
+        setErrorDate(false),
+        handleAddMeeting();
+        setFormDataMeeting({
+          serviceName: '',dateTime: '',NameUser: '',Phone: '',  Email: '', });
+      }})
+  }  
+  // const handleKeyPress = (event) => {
+  //   const { value } = event.target;
+  //   const regex = /^[0-9\b]+$/; // Regular expression to allow only digits
+  //   if (value.length >= 10 || !regex.test(event.key)) {
+  //     alert("A phone number can contain up to 10 digits and should only include numbers");
+  //     event.preventDefault();
   //   }
-
-  //   setFormDataMeeting((prevData) => ({
-  //     ...prevData,
-  //     dateTime: date,
-  //   }));
-  //   const handleInputChange = (event) => {
-  //     setEmail(event.target.value);
-  //   };
-  
-    // const handleSubmit = (event) => {
-    //   event.preventDefault();
-  
-     
-  
-
-    // Handle the valid date selection
-    // You can update the state or perform any necessary actions here
-  //   setFormDataMeeting((prevData) => ({
-  //     ...prevData,
-  //     dateTime: date,
-  //   }));
-  // }
-  
+  // };
+  const handleChange = (e) => {
+    setFormDataMeeting({ ...formDataMeeting,[e.target.name]: e.target.value,});
+  };
+  const servicesNames = store.services.map((service) => service.name);
     return (
-        <>
-            <form onSubmit={handleForm}>
-            {/* <TextField   name="id" type='number' label="Id" variant="outlined" value={formDataMeeting.id} onChange={handleChange} margin="dense" /> */}
+        <> <form onSubmit={handleForm}>
+              <h2>Appointment details</h2>
+            <FormControl fullWidth sx={{ mt: 1 }} margin="dense" >
+        <InputLabel name="serviceName-label">Service Name</InputLabel>
+        <Select labelId="serviceName-label" name="serviceName"value={formDataMeeting.serviceName}
+          onChange={handleChange} variant="outlined">
+          <MenuItem value=''>Select an option</MenuItem>
+          {servicesNames?.map((option) => (
+            <MenuItem key={option} value={option}>{option}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <br/>
+            <TextField  fullWidth sx={{ mt:1}} type='datetime-local' name="dateTime"  variant="outlined" value={formDataMeeting.dateTime} onChange={handleChange} margin="dense" 
+            error={errorDate}
+            helperText={errorDate&&'Busy date, schedule another date'} inputProps={{ min: getCurrentDateTime() }}/> 
             <br/>
-            <TextField name="serviceType" type='number' label="serviceType" variant="outlined" value={formDataMeeting.serviceType} onChange={handleChange} margin="dense" />
+            <TextField required fullWidth name="NameUser" label="Name" variant="outlined" value={formDataMeeting.NameUser} onChange={handleChange} margin="dense"/>
             <br/>
-            <TextField fullWidth sx={{ mt:1}} type='datetime-local' name="dateTime"  variant="outlined" value={formDataMeeting.dateTime} onChange={handleChange} margin="dense" />
-
-            {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DateTimePicker']}>
-        <DateTimePicker id="dateTime" label="dateTime" variant="outlined" value={formDataMeeting.dateTime} onChange={handleChangeTime} margin="dense" />
-      </DemoContainer>
-    </LocalizationProvider> */}
+            <TextField required  fullWidth name="Phone" label="Phone" variant="outlined" value={formDataMeeting.Phone} onChange={handleChange} onKeyPress={handleKeyPress} margin="dense"/>
             <br/>
-            <TextField name="Name" label="Name" variant="outlined" value={formDataMeeting.Name} onChange={handleChange} margin="dense"/>
-            <br/>
-            <TextField required name="Phone" label="Phone" variant="outlined" value={formDataMeeting.Phone} onChange={handleChange} margin="dense"/>
-            <br/>
-            <TextField required type='email' name="Email" label="Email" variant="outlined" value={formDataMeeting.Email} onChange={handleChange} margin="dense"/>
+            <TextField required fullWidth type='email' name="Email" label="Email" variant="outlined" value={formDataMeeting.Email} onChange={handleChange} margin="dense"/>
             <br/>
             <Button variant="outlined" type="submit">Add</Button>
-            </form>
-            {
-              // emailvalid && <MeetingsAlert/>
-            }
-             </> )}))
+            </form>      
+  </> )}))
 export default AddMeeting

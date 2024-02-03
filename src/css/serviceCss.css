@@ -1,0 +1,59 @@
+
+  .title{
+    background-color: rgb(248, 249, 249);
+    border: 3px solid rgb(152, 128, 9);
+    background-color:   rgb(15, 10, 89);
+    color: white;
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+  }
+  .services{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+
+
+  }
+  .containerS{
+  
+    display: inline-block;
+    /* background-color: rgb(248, 249, 249); */
+    border: 2px solid rgb(15, 10, 89);
+    border-radius: 3%;
+    color: rgb(15, 10, 89);
+    /* padding: 20px; */
+    margin: 20px;
+    text-align: center;
+    /* width: 350px; /* Set the desired width for each session */
+    /* height: 320px; */ 
+  }
+  
+ .sessionS {
+  display: inline-block;
+  padding: 5px;
+  margin: 5px; 
+  text-align: center;
+  width: 350px; /* Set the desired width for each session */
+  height: 320px;
+} 
+   
+
+  .containerS:hover {
+    background-color: #ecf2f5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  .logoS{
+   width: 120px;
+   height: 120px;
+  }
+  
+  .color-fub .MuiFab-root {
+    background-color: rgb(15, 10, 89);
+    color:white;
+     }
+     .color-fub .MuiFab-root:hover {
+      background-color:rgb(152, 128, 9);
+
+     }

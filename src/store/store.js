@@ -1,10 +1,14 @@
 import { makeObservable, observable, action } from "mobx";
+import { addServiceToServer } from './server';
+
 
 class DataStore {
     isLogin = false;
+    isMeeting=true;
     services = [];
     meetings = [];
     businessData=null;
+
     
     constructor() {
         makeObservable(this, {
@@ -19,72 +23,88 @@ class DataStore {
             businessData:observable,
             setBusinessData:action,
             editBusinessData:action,
+            isMeeting:observable,
+            setIsMeeting:action,
+           
         })
     }
+
     setIsLogin(status) {
         this.isLogin = status;
     }
-
-    setServices = (service) => {
-        this.services = service;
-    }
-
-    // addService = (addService) => {
-    //     this.services = [...this.services, {id:addService.id, name:addService.name, 
-    //      description:addService.description, price:addService.price, duration:addService.duration}];
+    // setServices=(s)=>{
+    //     this.services=s;
     // }
+    setServices = (service) => {
+
+        if (Object.keys(service).length === 0){
+            defaultServices.map(s => addServiceToServer(s))
+        }
+        else{
+            this.services=service;
+        }
+}
+
     addService = (addService) => {
+        
         this.services = [...this.services,addService ];
     }
-    // setMeetings=(meeting)=>{
-    //     this.meetings=meeting;
-    // }
-    setMeetings = (meeting) => {
-        this.meetings = meeting.sort((a, b) => {
-          // Convert the date strings to Date objects
-          const dateA = new Date(a.dateTime);
-          const dateB = new Date(b.dateTime);
-    
-          // Compare the dates
-          return dateA - dateB;
-        });
-      }
    
-    // addMeeting=(meeting)=>{
-    //     this.meetings=[...this.meetings, { id:meeting.id, serviceType:meeting.serviceType, 
-    //     dateTime:meeting.dateTime, clientName: meeting.Name,
-    //     Phone: meeting.Phone, Email: meeting.Email}]
-    // }
+    setMeetings = (meeting) => {
+        this.meetings = meeting;
+          
+    }
     addMeeting=(meeting)=>{
         this.meetings=[...this.meetings, meeting]
     }
-    // setBusinessData(businessData) {
-    //     this.businessData = businessData;
-    //   }
+   
+    setIsMeeting = (status) => {
+        this.isMeeting = status;
+    }
+   
     setBusinessData = (data) => {
-        if (data.length > 0) {
+      
+        if (data!==undefined&&data.name!==undefined) {
             this.businessData = data;
         }
         else {
             this.businessData = defaultBusinessData;
         }
+        
     }
-    
+
     editBusinessData(formData) {
-        this.businessData = {name:formData.name, address:formData.address,  phone:formData.phone, owner:formData.owner, logo:formData.logo, description:formData.description};
+        this.businessData = formData;
     }
-
-    
- 
 };
-
 export default new DataStore();
+
 const defaultBusinessData = {
-          name: "Coding Academy",
-          address: "123 Main Street",
-          phone: "555-1234",
-          owner: "John Doe",
-          logo: "https://example.com/logo.png",
-          description: "A coding academy that offers courses on web development."
-        }
+          name:"Golden Hands",
+          address: "Geula 55, Jerusalem",
+          phone: "053-311-1444",
+          email: "gold@gmail.com",
+          owner:"Goldy Lev",
+          logo: '../logo2.png',
+          description: "When art and service meet, a luxurious and perfect look is created just for you!"
+ }
+ const defaultServices=[{
+    name: "haircut",
+    description:"Haircut with a perfect design",
+    price:'20$',
+    duration:'20 minutes',
+ },
+ {
+    name: "makeup",
+    description:"Custom luxury makeup",
+    price:'100$',
+    duration: 'hour',
+ },
+ {
+    name: "Combing a wig",
+    description:"combing a wig that lasts for a long time",
+    price:'45$',
+    duration:'30 minutes',
+ },
+]
        

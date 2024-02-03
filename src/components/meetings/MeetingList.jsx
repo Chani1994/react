@@ -1,82 +1,50 @@
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
-// import Fab from '@mui/material/Fab';
-// import AddIcon from '@mui/icons-material/Add';
 import { observer } from 'mobx-react';
-import React, { useEffect, useState } from 'react';
+import { action } from 'mobx';
+import React, { useEffect } from 'react';
+import { getMeetings } from '../../store/server.js';
+import {getColor} from '../../store/meetingFunc.js'
 import store from '../../store/store.js';
 import Meeting from './Meeting.jsx';
-import { getMeetings } from '../../store/server.js';
-// import AddMeeting from './AddMeeting.jsx';
-
-const MeetingList = observer(() => {
+import '../../css/meetingCss.css'
+const MeetingList = (observer(() => {
   useEffect(() => {
-    if (!store.meetings.length > 0)
-      getMeetings();
-  }, []);
-
-  const [open, setOpen] = useState(false);
-  const handleOpenModal = () => {
-    setOpen(true);
-  };
-  const handleCloseModal = () => {
-    setOpen(false);
-  };
-  const getColor = (dateTime) => {
-    const currentDate = new Date();
-    const meetingDate = new Date(dateTime);
-    const differenceInDays = Math.floor(
-      (meetingDate - currentDate) / (1000 * 60 * 60 * 24)
-    );
-
-    if (differenceInDays === 0) {
-      return 'red';
-    } else if (differenceInDays <= 7) {
-      return 'orange';
-    } else {
-      return 'green';
+    getMeetings()
+      .then(success => {
+        sortMeetingsArray()
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [])
+  useEffect(() => {
+    if (store.isMeeting)
+      sortMeetingsArray();
+  }, [store.isMeeting])
+  // const sortMeetingsArray = () => {
+  //   const sortedArray = store.meetings.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
+  //   store.setMeetings(sortedArray)
+  // }
+  const sortMeetingsArray = action(() => {
+    if (store.meetings.length > 0) {
+      const sortedArray = store.meetings.slice().sort((a, b) => {
+        const dateA = new Date(a.dateTime);
+        const dateB = new Date(b.dateTime);
+        return dateA - dateB;
+      });
+      store.setMeetings(sortedArray);
     }
-  };
-  return (
-    <>
-              <h3>Meetings</h3>
+  });
 
-      {store.meetings.map((meeting, index) => {
-        const color = getColor(meeting.dateTime);
-        return (
-          // <div className={`container ${color}`} key={index}>
-        <Meeting key={meeting.id} index={index} getColor={getColor} />
-          // </div>
-        );
-      })}
+  return (<>
+      <h3 className='title'>Appointments</h3>
+      <br />
+      <div className='container-comp'>
+        {store.meetings.map((_, index) => (
+          <div className="container" key={index}>
+            <Meeting index={index} getColor={getColor} />
+          </div>
+        ))}
+      </div>
     </>
-  );
-});
-            {/* <div>
-            <h3>meetings</h3>
-            
-            {store.meetings.map((_, index) =>
-                <Meeting key={index} index={index}/>)}
-            </div> 
-             */}
-            {/* <Button onClick={handleOpenModal}>Add Meeting</Button> */}
-            {/* <br/>
-            <Fab color="primary" aria-label="add">
-        <AddIcon onClick={handleOpenModal}/>
-      </Fab>
-          <Dialog open={open} onClose={handleCloseModal}>
-            <DialogTitle>Add Meeting</DialogTitle>
-            <DialogContent>
-             <AddMeeting hc  />  
-            </DialogContent>
-            <DialogActions>
-              <Button variant="outlined" onClick={handleCloseModal}>Cancel</Button>
-              {/* <Button variant="outlined" onClick={() => setOpen(false)}>Save</Button> */}
-
-            {/* </DialogActions> */}
-          {/* // </Dialog> */} 
-
-//     </>
-//     // )
-//   )
-// })
-export default MeetingList
+  );}))
+export default MeetingList;
