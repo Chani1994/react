@@ -30,10 +30,6 @@ const routesArray = createBrowserRouter([
         element: <MeetingList />
 
       },
-      {
-        path: 'editBusinessData',
-        element: <EditBusinessData/>
-      }
     ]
   },
   {
