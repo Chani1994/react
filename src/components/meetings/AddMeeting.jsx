@@ -23,20 +23,11 @@ const AddMeeting = (observer(({handleAddMeeting}) => {
           serviceName: '',dateTime: '',NameUser: '',Phone: '',  Email: '', });
       }})
   }  
-  // const handleKeyPress = (event) => {
-  //   const { value } = event.target;
-  //   const regex = /^[0-9\b]+$/; // Regular expression to allow only digits
-  //   if (value.length >= 10 || !regex.test(event.key)) {
-  //     alert("A phone number can contain up to 10 digits and should only include numbers");
-  //     event.preventDefault();
-  //   }
-  // };
   const handleChange = (e) => {
     setFormDataMeeting({ ...formDataMeeting,[e.target.name]: e.target.value,});
   };
   const servicesNames = store.services.map((service) => service.name);
-    return (
-        <> <form onSubmit={handleForm}>
+    return (<> <form onSubmit={handleForm}>
               <h2>Appointment details</h2>
             <FormControl fullWidth sx={{ mt: 1 }} margin="dense" >
         <InputLabel name="serviceName-label">Service Name</InputLabel>
@@ -46,10 +37,8 @@ const AddMeeting = (observer(({handleAddMeeting}) => {
           {servicesNames?.map((option) => (
             <MenuItem key={option} value={option}>{option}</MenuItem>
           ))}
-        </Select>
-      </FormControl>
-      <br/>
-            <TextField  fullWidth sx={{ mt:1}} type='datetime-local' name="dateTime"  variant="outlined" value={formDataMeeting.dateTime} onChange={handleChange} margin="dense" 
+        </Select></FormControl><br/>
+            <TextField required fullWidth sx={{ mt:1}} type='datetime-local' name="dateTime"  variant="outlined" value={formDataMeeting.dateTime} onChange={handleChange} margin="dense" 
             error={errorDate}
             helperText={errorDate&&'Busy date, schedule another date'} inputProps={{ min: getCurrentDateTime() }}/> 
             <br/>

@@ -12,18 +12,13 @@ const Meeting = (observer(({ index ,getColor}) => {
     <div className='session'  >
     {thisMeeting ? (
       <>
-        {/* <h3 >dateTime: {thisMeeting.dateTime}</h3> */}
-        {/* <h3 className={getColor(thisMeeting.dateTime)}>dateTime: {thisMeeting.dateTime}</h3> */}
-        
-        {/* <h4>id: {thisMeeting.id}</h4> */}
-        {/* <img src={`${getColor(thisMeeting.dateTime)}`} alt="Logo" /> */}
         <Avatar src={logo1} alt="logo" ></Avatar>
         <div className={getColor(thisMeeting.dateTime)}>
         <p>Date: {new Date(thisMeeting.dateTime).toLocaleDateString()}</p>
         <p>Time: {thisMeeting.dateTime.split('T')[1]}</p>
         </div>
-        <p>serviceName: {thisMeeting.serviceName}</p>
-        <p>Name: {thisMeeting.NameUser}</p>
+        <h4>serviceName: {thisMeeting.serviceName}</h4>
+        <h4>User-Name: {thisMeeting.NameUser}</h4>
         <p>Phone: {thisMeeting.Phone}</p>
         <p>Email: {thisMeeting.Email}</p>
         

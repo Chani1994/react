@@ -6,8 +6,7 @@ function HomePage() {
     return (
       <>
  <Box
-  sx={{
-    display: 'flex',
+  sx={{ display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',

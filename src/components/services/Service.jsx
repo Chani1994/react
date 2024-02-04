@@ -15,15 +15,15 @@ const Service = (observer(({ index }) => {
         <div className='sessionS'  >
     <img src={logo2} alt="logo" className="logoS" />
 
-      {/* <h2>id: {thisService.id}</h2> */}
-      <p>name: {thisService.name}</p>
-      <p>description: {thisService.description}</p>
+      <h2>{thisService.name}</h2>
+      <h3>description: {thisService.description}</h3>
       <p>price: {thisService.price}</p>
       <p>duration: {thisService.duration}</p>
 
       </div>
     </>
-    : null}</div>
+    : null}
+    </div>
    
      
       

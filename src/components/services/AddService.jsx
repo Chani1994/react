@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { addServiceToServer } from '../../store/server';
 const AddService = (observer(({handleAdd}) => {
   const [service, setService] = useState({
-  // id: '',
   name: '',
   description: '',
   price: '',

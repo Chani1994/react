@@ -27,7 +27,6 @@ const ServiceList = (observer(() => {
           <Service key={index} index={index} />
         ))}
         </div>
-    
 <br/>
 {store.isLogin && (
   <><div className='color-fub'>
@@ -42,7 +41,6 @@ const ServiceList = (observer(() => {
   </DialogContent>
   <DialogActions>
     <Button variant="outlined" onClick={handleCloseModal}>Cancel</Button>
-    {/* <Button  variant="outlined" onClick={() => setOpen(false)}>Save</Button> */}
   </DialogActions>
 </Dialog></>)}
 </> )

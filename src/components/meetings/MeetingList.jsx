@@ -20,10 +20,7 @@ const MeetingList = (observer(() => {
     if (store.isMeeting)
       sortMeetingsArray();
   }, [store.isMeeting])
-  // const sortMeetingsArray = () => {
-  //   const sortedArray = store.meetings.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
-  //   store.setMeetings(sortedArray)
-  // }
+  
   const sortMeetingsArray = action(() => {
     if (store.meetings.length > 0) {
       const sortedArray = store.meetings.slice().sort((a, b) => {

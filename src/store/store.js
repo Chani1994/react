@@ -32,9 +32,6 @@ class DataStore {
     setIsLogin(status) {
         this.isLogin = status;
     }
-    // setServices=(s)=>{
-    //     this.services=s;
-    // }
     setServices = (service) => {
 
         if (Object.keys(service).length === 0){

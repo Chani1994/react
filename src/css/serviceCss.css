@@ -12,18 +12,13 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
-
-
   }
   .containerS{
   
     display: inline-block;
-    /* background-color: rgb(248, 249, 249); */
-    border: 2px solid rgb(15, 10, 89);
+    border: 2px solid rgb(152, 128, 9);;
     border-radius: 3%;
     color: rgb(15, 10, 89);
-    /* padding: 20px; */
     margin: 20px;
     text-align: center;
     /* width: 350px; /* Set the desired width for each session */
@@ -37,9 +32,10 @@
   text-align: center;
   width: 350px; /* Set the desired width for each session */
   height: 320px;
-} 
-   
+  font-size: large;
+  font-weight: 500;
 
+} 
   .containerS:hover {
     background-color: #ecf2f5;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -52,8 +48,8 @@
   .color-fub .MuiFab-root {
     background-color: rgb(15, 10, 89);
     color:white;
-     }
-     .color-fub .MuiFab-root:hover {
-      background-color:rgb(152, 128, 9);
+ }
+  .color-fub .MuiFab-root:hover {
+    background-color:rgb(152, 128, 9);
 
-     }
+  }
