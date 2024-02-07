@@ -10,8 +10,8 @@ function AdminHome() {
       <div >
         <BusinessData />
       </div>
-    <div className="home-container">
-    <h3>Admin Home</h3>
+      <div className="home-container">
+        <h3>Admin Home</h3>
         <ButtonGroup size="large" aria-label="large button group">
           <Button variant="outlined">
             <Link to="/admin/services">Services</Link>
@@ -20,9 +20,9 @@ function AdminHome() {
             <Link to="/admin/appointment">Appointment</Link>
           </Button>
         </ButtonGroup>
-      <br/>
-      <Outlet />
-    </div>
+        <br />
+        <Outlet />
+      </div>
     </div>
   );
 }

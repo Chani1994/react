@@ -1,9 +1,8 @@
-
- .header-container {
+.header-container {
 
   box-sizing: border-box;
 
-  font-family: cursive;  
+  font-family: cursive;
   display: flex;
   flex-direction: row-reverse;
   align-content: space-around;
@@ -12,119 +11,124 @@
   top: 0;
   left: 0;
   border: 5px solid rgb(152, 128, 9);
-  background-color:rgb(15, 10, 89);
+  background-color: rgb(15, 10, 89);
   padding: 5px;
-  color:white;
+  color: white;
   width: 100%;
-  } 
+}
 
-  .fab-container .MuiFab-root { 
-    background-color:white;
-    color: rgb(15, 10, 89);
-  } 
-  .fab-container .MuiFab-root:hover { 
-    background-color:white;
-    color:rgb(152, 128, 9);
-  } 
-  
-  
-  .logo-details-container {
-    display: flex;
-    justify-content: space-between;
+.fab-container .MuiFab-root {
+  background-color: white;
+  color: rgb(15, 10, 89);
+}
+
+.fab-container .MuiFab-root:hover {
+  background-color: white;
+  color: rgb(152, 128, 9);
+}
+
+
+.logo-details-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.logo-container {
+  margin-right: 10px;
+}
+
+.details-container {
+  text-align: center;
+}
+
+.fab-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: auto;
+
+}
+
+.custom-fab {
+  margin-top: -10px;
+}
+
+.logo {
+  width: 250px;
+  height: 250px;
+}
+
+@media only screen and (max-width: 768px) {
+
+  /* Styles for tablet screens */
+  .header-container {
+    flex-direction: column;
     align-items: center;
-    width: 50%;
+  }
+
+  .logo-details-container {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .logo-container {
+    margin-right: 0;
     margin-bottom: 10px;
   }
-  
-  .logo-container {
-    margin-right: 10px;
-  }
-  
+
   .details-container {
     text-align: center;
+    margin-bottom: 10px;
   }
-  
+
   .fab-container {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: auto;
-  
+    justify-content: center;
   }
-  
-  .custom-fab {
-    margin-top: -10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
   }
+
+  .logo-details-container {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .logo-container {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .details-container {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .fab-container {
+    justify-content: center;
+  }
+}
+
+/* iPhone mode styles */
+
+@media only screen and (max-width: 375px) {
+  .header-container {
+    padding: 10px;
+  }
+
+  .logo-details-container {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
   .logo {
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
   }
-  @media only screen and (max-width: 768px) {
-    /* Styles for tablet screens */
-    .header-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .logo-details-container {
-      width: 100%;
-      margin-bottom: 0;
-    }
-  
-    .logo-container {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-  
-    .details-container {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-  
-    .fab-container {
-      justify-content: center;
-    }
-  }
-  @media only screen and (max-width: 768px) {
-    .header-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .logo-details-container {
-      width: 100%;
-      margin-bottom: 0;
-    }
-  
-    .logo-container {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-  
-    .details-container {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-  
-    .fab-container {
-      justify-content: center;
-    }
-  }
-  
-  /* iPhone mode styles */
-  
-  @media only screen and (max-width: 375px) {
-    .header-container {
-      padding: 10px;
-    }
-  
-    .logo-details-container {
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-  
-    .logo {
-      width: 150px;
-      height: 150px;
-    }
-  }
+}

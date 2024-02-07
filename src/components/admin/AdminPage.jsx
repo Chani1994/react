@@ -1,4 +1,3 @@
-
 import { observer } from "mobx-react"
 import store from "../../store/store.js"
 import Login from "./Login"
@@ -9,9 +8,9 @@ const AdminPage = (observer(() => {
 
     return (
         <>
-            {!store.isLogin ? <Login /> : <AdminHome/>}
+            {!store.isLogin ? <Login /> : <AdminHome />}
         </>
     )
 }))
-  
-  export default AdminPage
+
+export default AdminPage

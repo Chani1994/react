@@ -17,7 +17,6 @@ export async function addServiceToServer(service) {
     try {
         const res = await axios.post('http://localhost:8787/service', service)
         if (res.status === 200) {
-            console.log("hhhhhh")
             console.log(res.status)
             store.addService(service);
             console.log('addService success');
@@ -48,18 +47,18 @@ export async function addMeeting(meeting) {
             store.addMeeting(meeting);
             store.setIsMeeting(true);
             Swal.fire({
-                        position: "top",
-                        icon: 'success',
-                        title: 'The appointment was successfully set',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        customClass: {
-                            icon: 'custom-success-icon',
-                          },
-                      });
-            
+                position: "top",
+                icon: 'success',
+                title: 'The appointment was successfully set',
+                showConfirmButton: false,
+                timer: 2000,
+                customClass: {
+                    icon: 'custom-success-icon',
+                },
+            });
+
         }
-      
+
     }
     catch (e) {
         store.setIsMeeting(false);
@@ -70,13 +69,13 @@ export async function addMeeting(meeting) {
             icon: 'error',
             confirmButtonText: 'OK',
             customClass: {
-              title: 'red-text',
-              content: 'red-text',
+                title: 'red-text',
+                content: 'red-text',
             },
-          });
+        });
         return 'failed';
     }
-   }
+}
 export async function getBusinessData() {
     try {
         const response = await axios.get('http://localhost:8787/businessData');
@@ -92,6 +91,6 @@ export async function updateBusinessData(businessData) {
         return 'success';
     }
     else {
-         return 'failed';
-         }
+        return 'failed';
+    }
 }
