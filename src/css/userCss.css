@@ -6,3 +6,19 @@
     color: rgb(152, 128, 9);
     background-color: rgb(15, 10, 89);
 }
+.ad-btn{
+    margin: 20px;
+    position: absolute;
+    left: 20px;
+    color: white;
+
+}
+.ad-btn .MuiButtonBase-root {
+    background-color: rgb(15, 10, 89);
+  
+}
+  
+.ad-btn .MuiButtonBase-root:hover {
+    background-color: rgb(15, 10, 89);
+  
+ } 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { Button, Stack, Box } from '@mui/material';
+import { Button, ButtonGroup, Box } from '@mui/material';
 import logo2 from '../images/logo2.png'
 function HomePage() {
   return (<>
@@ -32,14 +32,18 @@ function HomePage() {
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
           <h1>Golden Hands</h1>
-          <Stack spacing={2} direction="row">
-            <Button variant="outlined">
+          <ButtonGroup spacing={2} direction="row">
+            <div className='btn'>
+            <Button variant="contained"  >
               <Link to="/admin">Admin</Link>
             </Button>
-            <Button variant="outlined">
+            
+            <Button variant="contained">
               <Link to="/user">Users</Link>
             </Button>
-          </Stack>
+            </div>
+           
+          </ButtonGroup>
         </Box>
         <Outlet />
       </Box>

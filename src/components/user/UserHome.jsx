@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react';
+import { Link } from 'react-router-dom';
 import { Button, Dialog, DialogContent, DialogActions } from '@mui/material';
 import React, { useState } from 'react';
 import BusinessData from '../businessData/BusinessData'
@@ -19,6 +20,11 @@ const UserHome = (observer(() => {
   return (
     <>
       <BusinessData />
+      <div className='ad-btn'>
+      <Button variant="contained">
+              <Link to="/admin">Sing In Admin</Link>
+      </Button >
+      </div>
       <div className='home-container'>
         <ServiceList />
         <div className="btn">

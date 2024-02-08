@@ -12,11 +12,11 @@ function AdminHome() {
       </div>
       <div className="home-container">
         <h3>Admin Home</h3>
-        <ButtonGroup size="large" aria-label="large button group">
-          <Button variant="outlined">
+        <ButtonGroup size="large" aria-label="large button group" >
+          <Button variant="contained">
             <Link to="/admin/services">Services</Link>
           </Button>
-          <Button variant="outlined">
+          <Button variant="contained">
             <Link to="/admin/appointment">Appointment</Link>
           </Button>
         </ButtonGroup>
