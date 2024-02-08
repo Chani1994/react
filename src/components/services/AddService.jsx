@@ -22,18 +22,18 @@ const AddService = (observer(({ handleAdd }) => {
     });
   };
   const handleInputChange = (e) => {
-    setService({ ...service, [e.target.name]: e.target.value, });
+    setService({ ...service, [e.target.id]: e.target.value, });
   }
   return (<>
     <h2>Add Service</h2>
     <form onSubmit={handleFormSubmit}>
-      <TextField required name="name" type='text' label="serviceName" variant="outlined" value={service.name} onChange={handleInputChange} margin="dense" />
+      <TextField required id="name" type='text' label="serviceName" variant="outlined" value={service.name} onChange={handleInputChange} margin="dense" />
       <br />
-      <TextField name="description" label="description" variant="outlined" value={service.description} onChange={handleInputChange} margin="dense" />
+      <TextField id="description" label="description" variant="outlined" value={service.description} onChange={handleInputChange} margin="dense" />
       <br />
-      <TextField required name="price" label="servicePrice" variant="outlined" value={service.price} onChange={handleInputChange} margin="dense" />
+      <TextField required id="price" label="servicePrice" variant="outlined" value={service.price} onChange={handleInputChange} margin="dense" />
       <br />
-      <TextField name="duration" type='text' label="duration" variant="outlined" value={service.duration} onChange={handleInputChange} margin="dense" />
+      <TextField id="duration" type='text' label="duration" variant="outlined" value={service.duration} onChange={handleInputChange} margin="dense" />
       <br />
       <Button variant="outlined" type="submit">Add</Button>
     </form>
